@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHADOW-CODE | ENCRYPTOR</title>
+    <style>
+        :root {
+            --neon-green: #39FF14;
+            --bg-dark: #0a0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--neon-green);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: var(--glass-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            resize: none;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            border-color: var(--neon-green);
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 10px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        #output {
+            margin-top: 20px;
+            border-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>[ HASHUU ENCRYPTOR ]</h1>
+    <p style="text-align: center; font-size: 12px; color: #888;">ADVANCED HTML & JS PROTECTION SYSTEM</p>
+    
+    <textarea id="inputCode" placeholder="Paste your HTML/JS code here..."></textarea>
+    
+    <div class="btn-group">
+        <button onclick="encryptCode()">ENCRYPT NOW</button>
+        <button onclick="copyCode()">COPY RESULT</button>
+    </div>
+
+    <textarea id="output" readonly placeholder="Encrypted code will appear here..."></textarea>
+</div>
+
+<script>
+    function encryptCode() {
+        let code = document.getElementById('inputCode').value;
+        if (!code) return alert("Palamuwen code eka paste karanna!");
+
+        // Level 1: String to CharCode conversion
+        let charCodes = [];
+        for (let i = 0; i < code.length; i++) {
+            charCodes.push(code.charCodeAt(i));
+        }
+
+        // Level 2: Scrambled script generation
+        // Meka "eval" wenne String.fromCharCode haraha
+        let encrypted = `
+<script>
+/* Encrypted by SHADOW-CODE */
+var _0x5a2e=["\\x65\\x76\\x61\\x6c","\\x66\\x72\\x6f\\x6d\\x43\\x68\\x61\\x72\\x43\\x6f\\x64\\x65"];
+(function(){
+    var c = [${charCodes.join(',')}];
+    var s = '';
+    for(var i=0; i<c.length; i++){ s += String[_0x5a2e[1]](c[i]); }
+    window[_0x5a2e[0]](s);
+})();
+<\/script>
+        `.trim();
+
+        document.getElementById('output').value = encrypted;
+    }
+
+    function copyCode() {
+        let copyText = document.getElementById("output");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Code copied to clipboard!");
+    }
+</script>
+
+</body>
+  </html>
